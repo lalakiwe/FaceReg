@@ -3,6 +3,8 @@ FaceReg
 
 A simple face recognition program which is implemented by QML and OpenCV.
 
+<img src="https://github.com/lalakiwe/FaceReg/blob/master/test/screenshot.png" alt="screenshot" width="320" height="240">
+
 **Develop environment**
 
  - Windows 7 64bit
