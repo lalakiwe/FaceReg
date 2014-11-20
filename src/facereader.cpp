@@ -24,12 +24,7 @@ FaceReader::~FaceReader()
         m_pPersonRecognizer = NULL;
     }
 
-    if(m_videoCapture) {
-        if(m_videoCapture->isOpened()) {
-            m_videoCapture->release();
-        }
-        delete m_videoCapture;
-    }
+    this->close();
 }
 
 void FaceReader::setFaceSource(const QString& source)
@@ -57,6 +52,13 @@ QString FaceReader::isClosed() const
 }
 
 void FaceReader::close(const QString&) {
+    if(m_videoCapture) {
+        if(m_videoCapture->isOpened()) {
+            m_videoCapture->release();
+        }
+        delete m_videoCapture;
+        m_videoCapture = NULL;
+    }
 }
 
 QImage FaceReader::requestImage(const QString& /*id*/, QSize* /*size*/, const QSize& /*requestedSize*/)
@@ -100,7 +102,7 @@ double FaceReader::facePredict(Mat& m, QImage& qimage)
     m_faceDetector.findFacesInImage(grayMat, faces);
 
     bool has_match = false;
-    double match = 0;
+    double match = -1;
     if(m_pPersonRecognizer == NULL) {
         QString faceXmlFile = FACE_LOG;
         m_pPersonRecognizer = new PersonRecognizer(faceXmlFile, LBPH_RADIUS, LBPH_NEIGHBORS, LBPH_GRID_X, LBPH_GRID_Y, LBPH_THRESHOLD);
@@ -117,9 +119,9 @@ double FaceReader::facePredict(Mat& m, QImage& qimage)
             match = confidence;
         }
         else {
-            confidence = 0;
+            confidence = numeric_limits<double>::max();
         }
-        Scalar color = ( confidence > 20 ) ? MATCH_COLOR : NO_MATCH_COLOR;
+        Scalar color = ( confidence < DISTANCE_THRESHOULD ) ? MATCH_COLOR : NO_MATCH_COLOR;
 
         Point center(face->x + face->width * 0.5, face->y + face->height * 0.5);
         circle(m, center, FACE_RADIUS_RATIO * face->width, color, CIRCLE_THICKNESS, LINE_TYPE, 0);
@@ -133,8 +135,7 @@ double FaceReader::facePredict(Mat& m, QImage& qimage)
     else {
         putText(m, format("Match: %s", "None"), cvPoint(10, m.rows - 30), FONT, 1, FONT_COLOR, 1, LINE_TYPE);
     }
-    putText(m, format("Confidence: %d", has_match ? (int)match : 0), cvPoint(10, m.rows - 5), FONT, 1, FONT_COLOR, 1, LINE_TYPE);
-
+    putText(m, format("Confidence: %d", (int)match), cvPoint(10, m.rows - 5), FONT, 1, FONT_COLOR, 1, LINE_TYPE);
 
 
     switch ( m.type() )

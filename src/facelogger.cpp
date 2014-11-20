@@ -19,16 +19,13 @@ FaceLogger::FaceLogger(QObject *parent) :
 
 FaceLogger::~FaceLogger()
 {
-    if(m_videoCapture) {
-        if(m_videoCapture->isOpened()) {
-            m_videoCapture->release();
-        }
-        delete m_videoCapture;
-    }
+    this->close();
 }
 
 void FaceLogger::setFaceSource(const QString& source)
 {
+    this->close();
+
     if(source == "0" || source == "1" || source == "2")
     {
         if(m_videoCapture == NULL) {
@@ -52,6 +49,13 @@ QString FaceLogger::isClosed() const
 }
 
 void FaceLogger::close(const QString&) {
+    if(m_videoCapture) {
+        if(m_videoCapture->isOpened()) {
+            m_videoCapture->release();
+        }
+        delete m_videoCapture;
+        m_videoCapture = NULL;
+    }
 }
 
 QImage FaceLogger::requestImage(const QString& /*id*/, QSize* /*size*/, const QSize& /*requestedSize*/)

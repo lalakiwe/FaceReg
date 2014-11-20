@@ -11,11 +11,6 @@
 #define FACE_TRAINNING_DATA  "face_trainnig_data"
 #define FACE_LOG             (QDir::tempPath() + QDir::separator() + FACE_TRAINNING_DATA);
 
-/** Inputs: **/
-//#define IN_VID        "input_vid/031213_POTUS_ExportCouncil_HD.mp4"
-#define IN_VID        "C:\\Users\\vince_li\\Downloads\\Vince2.avi"
-#define TRAINING_LIST "obama_faces/list"
-
 /** Colors, fonts, lines... **/
 #define NO_MATCH_COLOR    Scalar(0,0,255) //red
 #define MATCH_COLOR       Scalar(0,255,0) //green
@@ -47,6 +42,8 @@
 #define LBPH_GRID_X    8
 #define LBPH_GRID_Y    8
 #define LBPH_THRESHOLD 180.0
+
+#define DISTANCE_THRESHOULD 100
 
 #endif	/* DEFS_H */
 

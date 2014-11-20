@@ -33,7 +33,7 @@ public:
     Q_INVOKABLE void setFaceSource(const QString& source);
     QString isValid() const;
     QString isClosed() const;
-    Q_INVOKABLE void close(const QString&);
+    Q_INVOKABLE void close(const QString& = QString());
 
 private:
     FaceDetector m_faceDetector;
