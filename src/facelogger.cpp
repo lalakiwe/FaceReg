@@ -107,7 +107,7 @@ QImage FaceLogger::requestImage(const QString& /*id*/, QSize* /*size*/, const QS
 
     // put progress on image
     char buf[64] = {0};
-    sprintf(buf, "Progrss: %d \%", (int)((double)m_vecMatImages.size() / MAX_TRAIN_IMAGE_CNT * 100));
+    sprintf(buf, "Progrss: %d %%", (int)((double)m_vecMatImages.size() / MAX_TRAIN_IMAGE_CNT * 100));
     putText(inMat, buf, Point(10, 20), FONT, 1, FONT_COLOR, 1);
 
     switch ( inMat.type() )
