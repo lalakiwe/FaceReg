@@ -46,7 +46,7 @@
 #define LBPH_NEIGHBORS 8
 #define LBPH_GRID_X    8
 #define LBPH_GRID_Y    8
-#define LBPH_THRESHOLD 120.0
+#define LBPH_THRESHOLD 180.0
 
 #endif	/* DEFS_H */
 

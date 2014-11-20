@@ -6,6 +6,10 @@ Window {
     visible: true
     width: 640
     height: 480
+    Component.onCompleted: {
+        setX(Screen.width / 2 - width / 2);
+        setY(Screen.height / 2 - height / 2);
+    }
 
     Timer {
         id: faceLoggerTimer
@@ -44,33 +48,14 @@ Window {
             }
     }
 
-//    Button {
-//        id: btnFileTrain;
-//        width: 92;
-//        Text {
-//            anchors.centerIn: parent;
-//            font.family: "微軟正黑體";
-//            font.pointSize: 13;
-//            font.bold: true;
-//            text: "File Train"
-//        }
-//        anchors.left: parent.left;
-//        anchors.bottom: parent.bottom;
-//        onClicked: {
-//            FaceLogger.setFaceSource("C:\\Users\\vince_li\\Downloads\\Vince2.avi")
-//            faceLoggerTimer.running = true;
-//        }
-//    }
-
     Button {
         id: btnCamTrain;
-        width: 92;
-        Text {
-            anchors.centerIn: parent;
-            font.family: "微軟正黑體";
-            font.pointSize: 13;
-            font.bold: true;
-            text: "Cam Train"
+        width: 64;
+        height: 64;
+        Image {
+            source: "qrc:/data/Cam.png"
+            anchors.fill: parent
+            anchors.margins: 4
         }
         anchors.right: btnReg.left;
         anchors.bottom: parent.bottom;
@@ -84,12 +69,12 @@ Window {
 
     Button {
         id: btnReg;
-        Text {
-            anchors.centerIn: parent;
-            font.family: "微軟正黑體";
-            font.pointSize: 13;
-            font.bold: true;
-            text: "辨識"
+        width: 64;
+        height: 64;
+        Image {
+            source: "qrc:/data/Reg.png"
+            anchors.fill: parent
+            anchors.margins: 4
         }
         anchors.right: btnStop.left;
         anchors.bottom: parent.bottom;
@@ -103,12 +88,12 @@ Window {
 
     Button {
         id: btnStop;
-        Text {
-            anchors.centerIn: parent;
-            font.family: "微軟正黑體";
-            font.pointSize: 13;
-            font.bold: true;
-            text: "停止"
+        width: 64;
+        height: 64;
+        Image {
+            source: "qrc:/data/Pause.png"
+            anchors.fill: parent
+            anchors.margins: 4
         }
         anchors.right: btnQuit.left;
         anchors.bottom: parent.bottom;
@@ -122,12 +107,12 @@ Window {
 
     Button {
         id: btnQuit;
-        Text {
-            anchors.centerIn: parent;
-            font.family: "微軟正黑體";
-            font.pointSize: 13;
-            font.bold: true;
-            text: "離開"
+        width: 64;
+        height: 64;
+        Image {
+            source: "qrc:/data/Exit.png"
+            anchors.fill: parent
+            anchors.margins: 4
         }
         anchors.right: parent.right;
         anchors.bottom: parent.bottom;

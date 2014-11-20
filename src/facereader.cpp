@@ -34,14 +34,6 @@ FaceReader::~FaceReader()
 
 void FaceReader::setFaceSource(const QString& source)
 {
-    if(m_videoCapture) {
-        if(m_videoCapture->isOpened()) {
-            m_videoCapture->release();
-        }
-        delete m_videoCapture;
-        m_videoCapture = NULL;
-    }
-
     if(source == "0" || source == "1" || source == "2")
     {
         if(m_videoCapture == NULL) {
