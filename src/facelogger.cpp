@@ -80,6 +80,7 @@ QImage FaceLogger::requestImage(const QString& /*id*/, QSize* /*size*/, const QS
         m_pModel->train(m_vecMatImages, m_vecIntLabels);
         QString tempFile = FACE_LOG;
         QFile::remove(tempFile);
+        qDebug() << "Save features to file: " <<tempFile.toUtf8().constData();
         m_pModel->save(tempFile.toUtf8().constData());
         m_pModel = NULL;
 

@@ -29,7 +29,11 @@ FaceDetector::FaceDetector(
     {
         if( _cascade.load(tempXML.fileName().toStdString()) == false )
         {
-            qDebug() << "load cascadePath failed";
+            qDebug() << "load cascade template failed: " << tempXML.fileName();
+        }
+        else
+        {
+            qDebug() << "Load cascade template successed: " << tempXML.fileName();
         }
     }
     else
